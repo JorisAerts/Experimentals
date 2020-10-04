@@ -7,7 +7,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - run: "echo $('-I' + $env:JAVA_HOME + '\\include')"
     - name: Pre-Compile
       run: "g++ -c $('-I' + $env:JAVA_HOME + '\\include') $('-I' + $env:JAVA_HOME + '\\include\\win32') EnvironmentLib.cc -o EnvironmentLib.o"
     - name: Compile
