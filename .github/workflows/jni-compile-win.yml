@@ -9,6 +9,6 @@ jobs:
     - uses: actions/checkout@v1
     - run: echo "test -I{0}" | -f $env:JAVA_HOME
     - name: Pre-Compile
-      run: "g++ -c -I{0}\include -I{0}\include\win32 EnvironmentLib.cc -o EnvironmentLib.o" | -f $env:JAVA_HOME
+      run: "g++ -c -I{0}\\include -I{0}\\include\\win32 EnvironmentLib.cc -o EnvironmentLib.o" | -f $env:JAVA_HOME
     - name: Compile
       run: g++ -shared -o EnvironmentLib.dll EnvironmentLib.o -Wl,--add-stdcall-alias
