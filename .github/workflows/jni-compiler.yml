@@ -7,16 +7,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: Pre-Compile
+      run: g++ -c -fPIC -I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux EnvironmentLib.cpp -o EnvironmentLib.o
     - name: Compile
-      run: g++ -shared -fPIC -o libnativeEnv.so EnvironmentLib.o -lc
+      run: g++ -shared -fPIC -o EnvironmentLib.so EnvironmentLib.o -lc
 
   compile-windows:
     name: Compile on Windows
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
+    - name: Pre-Compile
+      run: g++ -c -I%JAVA_HOME%\include -I%JAVA_HOME%\include\win32 EnvironmentLib.cpp -o EnvironmentLib.o
     - name: Compile
-      run: g++ -shared -o nativeEnv.dll EnvironmentLib.o -Wl,--add-stdcall-alias
+      run: g++ -shared -o EnvironmentLib.dll EnvironmentLib.o -Wl,--add-stdcall-alias
 
 
   compile-macos:
@@ -24,5 +28,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
+    - name: Pre-Compile
+      run: g++ -c -fPIC -I${JAVA_HOME}/include -I${JAVA_HOME}/include/darwin EnvironmentLib.cpp -o EnvironmentLib.o
     - name: Compile
-      run: g++ -dynamiclib -o libnativeEnv.dylib EnvironmentLib.o -lc
+      run: g++ -dynamiclib -o EnvironmentLib.dylib EnvironmentLib.o -lc
