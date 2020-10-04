@@ -1,5 +1,7 @@
 on: [push]
 
+name: Compile JNI libs
+
 jobs:
 
   compile-linux:
