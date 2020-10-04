@@ -3,6 +3,7 @@ on: [push]
 jobs:
 
   checkout:
+    runs-on: [self-hosted,ubuntu-latest,windows-latest,macos-latest]
     steps:
     - uses: actions/checkout@v1
 
@@ -26,7 +27,7 @@ jobs:
   compile-macos:
     name: compile on macOS
     needs: checkout
-    runs-on: macos-latest 
+    runs-on: macos-latest
     steps:
     - name: Compile
       run: g++ -dynamiclib -o libnativeEnv.dylib EnvironmentLib.o -lc
