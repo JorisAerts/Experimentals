@@ -10,4 +10,4 @@ jobs:
     - name: Pre-Compile
       run: "g++ -c $('-I' + $env:JAVA_HOME + '\\include') $('-I' + $env:JAVA_HOME + '\\include\\win32') EnvironmentLib.cc -o EnvironmentLib.o"
     - name: Compile
-      run: "g++ -shared -o EnvironmentLib.dll EnvironmentLib.o -Wl\,--add-stdcall-alias"
+      run: "g++ -shared -o EnvironmentLib.dll EnvironmentLib.o -Wl,--add-stdcall-alias"
