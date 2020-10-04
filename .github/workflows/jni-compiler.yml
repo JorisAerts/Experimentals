@@ -50,3 +50,10 @@ jobs:
       with:
         name: EnvironmentLib-mac
         path: EnvironmentLib.dylib
+
+  publish:
+    name: publish artifacts
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: List files
+        run: ls -R
