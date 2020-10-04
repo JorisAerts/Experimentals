@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+
+  compile-windows:
+    name: Compile on Windows
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Pre-Compile
+      run: g++ -c -I%JAVA_HOME%\include -I%JAVA_HOME%\include\win32 EnvironmentLib.cc -o EnvironmentLib.o
+    - name: Compile
+      run: g++ -shared -o EnvironmentLib.dll EnvironmentLib.o -Wl,--add-stdcall-alias
