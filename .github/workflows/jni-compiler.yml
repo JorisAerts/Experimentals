@@ -19,7 +19,7 @@ jobs:
         name: EnvironmentLib-linux
         path: EnvironmentLib.so
     - name: List files
-        run: ls -R
+      run: ls -R
         
   compile-windows:
     name: Compile on Windows
