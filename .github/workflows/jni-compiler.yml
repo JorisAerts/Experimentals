@@ -2,32 +2,27 @@ on: [push]
 
 jobs:
 
-  checkout:
-    runs-on: [ubuntu-latest,windows-latest,macos-latest]
-    steps:
-    - uses: actions/checkout@v1
-
   compile-linux:
     name: Compile on Linux
-    needs: checkout
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Compile
       run: g++ -shared -fPIC -o libnativeEnv.so EnvironmentLib.o -lc
 
   compile-windows:
     name: Compile on Windows
-    needs: checkout
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Compile
       run: g++ -shared -o nativeEnv.dll EnvironmentLib.o -Wl,--add-stdcall-alias
 
 
   compile-macos:
     name: compile on macOS
-    needs: checkout
     runs-on: macos-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Compile
       run: g++ -dynamiclib -o libnativeEnv.dylib EnvironmentLib.o -lc
