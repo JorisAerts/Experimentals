@@ -1,6 +1,6 @@
 #include "EnvironmentLib.h"
 #include <stdlib.h>
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(_WIN32)
 #include <string>
 #endif
 
@@ -29,7 +29,7 @@ JNIEXPORT jint JNICALL Java_EnvironmentLib_setenv
 {
     JavaString namep(env, name);
     JavaString valuep(env, value);
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(_WIN32)
     std::string s(namep);
     s += "=";
     s += valuep;
@@ -44,7 +44,7 @@ JNIEXPORT jint JNICALL Java_EnvironmentLib_unsetenv
   (JNIEnv *env, jobject obj, jstring name)
 {
     JavaString namep(env, name);
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(_WIN32)
     std::string s(namep);
     s += "=";
     int res = _putenv(s.c_str());
