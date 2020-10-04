@@ -7,8 +7,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - run: echo $env:JAVA_HOME\include\win32
     - run: dir $env:JAVA_HOME\include\win32
+    - run: dir $env:JAVA_HOME\include\win32\bridge
+    - run: echo g++ -c -I$env:JAVA_HOME\include -I$env:JAVA_HOME\include\win32 EnvironmentLib.cc -o EnvironmentLib.o
     - name: Pre-Compile
       run: g++ -c -I$env:JAVA_HOME\include -I$env:JAVA_HOME\include\win32 EnvironmentLib.cc -o EnvironmentLib.o
     - name: Compile
