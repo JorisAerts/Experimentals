@@ -7,9 +7,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - run: dir $env:JAVA_HOME\include
-    - run: echo g++ -c -I$env:JAVA_HOME\include -I$env:JAVA_HOME\include\win32 EnvironmentLib.cc
+    - run: echo "test -I{0}" | -f $env:JAVA_HOME
     - name: Pre-Compile
-      run: g++ -c -I$env:JAVA_HOME\include -I$env:JAVA_HOME\include\win32 EnvironmentLib.cc -o EnvironmentLib.o
+      run: "g++ -c -I{0}\include -I{0}\include\win32 EnvironmentLib.cc -o EnvironmentLib.o" | -f $env:JAVA_HOME
     - name: Compile
       run: g++ -shared -o EnvironmentLib.dll EnvironmentLib.o -Wl,--add-stdcall-alias
