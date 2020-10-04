@@ -17,11 +17,7 @@ jobs:
     - name: Upload EnvironmentLib
       uses: actions/upload-artifact@v2.2.0
       with:
-        # Artifact name
-        name: # optional, default is artifact
-        # A file, directory or wildcard pattern that describes what to upload
         path: EnvironmentLib.so
-        # The desired behavior if no files are found using the provided path.
 
   compile-windows:
     name: Compile on Windows
