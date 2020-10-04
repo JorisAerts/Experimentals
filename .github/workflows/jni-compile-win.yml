@@ -8,6 +8,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Pre-Compile
-      run: g++ -c -I${JAVA_HOME}\include -I${JAVA_HOME}\include\win32 EnvironmentLib.cc -o EnvironmentLib.o
+      run: g++ -c -I%JAVA_HOME%\include -I%JAVA_HOME%\include\win32  -I%JAVA_HOME%\include\win64 -I%JAVA_HOME%\include\win EnvironmentLib.cc -o EnvironmentLib.o
     - name: Compile
       run: g++ -shared -o EnvironmentLib.dll EnvironmentLib.o -Wl,--add-stdcall-alias
